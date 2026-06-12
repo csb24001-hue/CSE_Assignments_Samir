@@ -1,0 +1,51 @@
+Libary_system.py
+from abc import ABC, abstractmethod
+
+class LibraryItem(ABC):
+    item_count = 0
+
+    def __init__(self, title, year):
+        self.title = title
+        self.year = year
+        LibraryItem.item_count += 1
+
+    @abstractmethod
+    def display_info(self):
+        pass
+
+
+class Book(LibraryItem):
+    def __init__(self, title, year, author):
+        super().__init__(title, year)
+        self.author = author
+
+    def display_info(self):
+        print(f"Book: {self.title}")
+        print(f"Year: {self.year}")
+        print(f"Author: {self.author}")
+
+
+class DVD(LibraryItem):
+    def __init__(self, title, year, genre, duration):
+        super().__init__(title, year)
+        self.genre = genre
+        self.duration = duration
+
+    def display_info(self):
+        print(f"DVD: {self.title}")
+        print(f"Year: {self.year}")
+        print(f"Genre: {self.genre}")
+        print(f"Duration: {self.duration} min")
+
+
+items = [
+    Book("Python Basics", 2023, "John Smith"),
+    DVD("Interstellar", 2014, "Sci-Fi", 169)
+]
+
+for item in items:
+    item.display_info()
+    print()
+
+print("Total Items:", LibraryItem.item_count)
+
